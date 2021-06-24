@@ -1,0 +1,1 @@
+Sito del Torneo Pescara Cinema e Cazzi vari, lo scopo del sito è quello di,permettere ai giocatori di registrarsi e di inviare i risultati che poi verrano valutati per asseggnare un punteggio per stilare una classifica. Il vincitore del torneo vincerà una cena gratis offerta dall'ultimo in classifica
