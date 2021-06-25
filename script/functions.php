@@ -132,7 +132,7 @@ function matchfinder($matchtype) {
   $reqPrefs['http']['header'] = 'X-Auth-Token: 44623b1a626048ed8afd8e884d394e53';
   $stream_context = stream_context_create($reqPrefs);
   $response = file_get_contents($uri, false, $stream_context);
-  $matches = json_decode($response);    
+  $matches = json_decode($response);
   }
   return $matches;
 }
@@ -145,6 +145,7 @@ function punteggio (){
   $ris = $result->fetch_assoc();
   $matchtype = $ris["fase"];
   $matches = matchfinder($matchtype);
+ if (!is_null($matches)){
  foreach($matches->matches as $match){
     $cont++;
     if ($match->status!="FINISHED"){
@@ -196,22 +197,22 @@ function punteggio (){
        $punteggio1 = 20;
        $punteggio2 = 40;
       }
-    elseif ($matchtype==3) {
+    elseif ($matchtype===3) {
       $matchtype="LAST_16";
       $punteggio1 = 30;
       $punteggio2 = 60;
       }
-    elseif ($matchtype=="LAST_16") {
+    elseif ($matchtype==="LAST_16") {
       $matchtype="QUARTER_FINALS";
       $punteggio1 = 45;
       $punteggio2 = 90;
       }
-    elseif ($matchtype=="QUARTER_FINALS") {
+    elseif ($matchtype==="QUARTER_FINALS") {
       $matchtype="SEMI_FINALS";
       $punteggio1 = 70;
       $punteggio2 = 140;
       }
-    elseif ($matchtype=="SEMI_FINALS") {
+    elseif ($matchtype==="SEMI_FINALS") {
       $matchtype="FINAL";
       $punteggio1 = 100;
       $punteggio2 = 200;
@@ -274,8 +275,12 @@ function punteggio (){
       }
   }
 }
+}
 function matchtype(){
-  $matchtype=1;
+  $sql = "SELECT fase FROM torneo";
+  $result= sqlquery($sql);
+  $ris = $result->fetch_assoc();
+  $matchtype = $ris["fase"];
   $status=1;
   while ($status != 0) {
     if (!is_string($matchtype)){
@@ -303,16 +308,16 @@ function matchtype(){
     if ($matchtype >= 1 && $matchtype < 3){
       $matchtype++;
       }
-    elseif ($matchtype==3) {
+    elseif ($matchtype===3) {
       $matchtype="LAST_16";
       }
-    elseif ($matchtype=="LAST_16") {
+    elseif ($matchtype==="LAST_16") {
       $matchtype="QUARTER_FINALS";
       }
-    elseif ($matchtype=="QUARTER_FINALS") {
+    elseif ($matchtype==="QUARTER_FINALS") {
       $matchtype="SEMI_FINALS";
       }
-    elseif ($matchtype=="SEMI_FINALS") {
+    elseif ($matchtype==="SEMI_FINALS") {
       $matchtype="FINAL";
       }
     }
