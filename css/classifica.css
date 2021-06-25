@@ -4,9 +4,9 @@ h2 {
 	bottom: 60px;
 }
 #Logo {
-    position: relative;
-    top: -80px;
-    left: 20px;
+	position: relative;
+	top: -80px;
+	left: 20px;
 }
 table, table td {
 	border: 1px solid black
@@ -17,17 +17,17 @@ table {
 	background-color: white;
 	position:relative;
 	top: 150px;
-    left: 450px;
+	left: 450px;
 }
 tr:nth-child(2)
 {
-  background-color: gold;
+	background-color: gold;
 }
 tr:nth-child(3)
 {
-  background-color: silver;
+	background-color: silver;
 }
 tr:nth-child(4)
 {
-  background-color: #cd7f32;
+	background-color: #cd7f32;
 }

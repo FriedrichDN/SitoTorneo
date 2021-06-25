@@ -1,16 +1,14 @@
 @media only screen and (max-width: 768px) {
-#Logo {
+  #Logo {
     position: relative;
     top: -30px;
     left: 10px;
-}
-.table {
+  }
+  .table {
     width: 340px;
     border-collapse: collapse;
     background-color: white;
     position:relative;
     top: 150px;
     left: 13px;
-}
-
-
+  }

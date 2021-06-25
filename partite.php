@@ -41,7 +41,12 @@ if(isset($_SESSION["userID"])){
       <div id="content">
         <?php
         include 'script/functions.php';
-        $matches= matchfinder(matchtype());
+        punteggio();
+        $sql = "SELECT fase FROM torneo";
+        $result= sqlquery($sql);
+        $ris = $result->fetch_assoc();
+        $matchtype = $ris["fase"];
+        $matches= matchfinder($matchtype);
         ?>
         <table>
             <form method="post" action="../script/json.php">

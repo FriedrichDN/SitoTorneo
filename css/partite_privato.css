@@ -1,31 +1,31 @@
 h2 {
-    text-align: center;
-    position: relative;
-    bottom: 60px;
+  text-align: center;
+  position: relative;
+  bottom: 60px;
 }
 #Logo {
-    position: relative;
-    top: -80px;
-    left: 20px;
+  position: relative;
+  top: -80px;
+  left: 20px;
 }
 input[type=submit] {
-    position: relative;
-    left: 1230px;
-    top: 470px;
-    height: 30px;
-    width: 100px;
-    background-color: blue;
-    color: white;
-    font-weight: bold;
-    border-style: none;
-    font-size: 20px;
+  position: relative;
+  left: 1230px;
+  top: 470px;
+  height: 30px;
+  width: 100px;
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+  border-style: none;
+  font-size: 20px;
 }
 table{
-	position:relative;
-	top: 10px;
-	width:1000px;
-    margin-left:auto; 
-    margin-right:auto;
-    background-color: white;
-    border-spacing: 3px;
+  position:relative;
+  top: 10px;
+  width:1000px;
+  margin-left:auto;
+  margin-right:auto;
+  background-color: white;
+  border-spacing: 3px;
 }
