@@ -39,7 +39,11 @@ if(!isset($_SESSION["userID"])){
 <?php
     include '../script/functions.php';
     punteggio();
-    $matches= matchfinder(matchtype());
+    $sql = "SELECT fase FROM torneo";
+    $result= sqlquery($sql);
+    $ris = $result->fetch_assoc();
+    $matchtype = $ris["fase"];
+    $matches= matchfinder($matchtype);
     $num=0; //numero match
     ?>
     <table>
