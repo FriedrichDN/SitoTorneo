@@ -16,31 +16,31 @@ if(isset($_SESSION["userID"])){
 </head>
 <body class="d-flex h-100 text-center text-white bg-dark">
   <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-  <header>
-    <h3 class="float-md-start mb-0">Registrati</h3>
-    <?php include_once "navbar.php";?>
-  </header>
-  <main class="form-signin">
-    <form method="post" action="script/register-script.php">
-      <h1 class="h3 mb-3 fw-normal">Esegui la registrazione</h1>
-      <div class="form-floating">
-      <input type="text" class="form-control" id="floatingInput" name="username" placeholder="Inserisci lo username">
-      <label class= "input" for="floatingInput">Username</label>
-      </div>
-      <div class="form-floating">
-      <input type="password" class="form-control secondo" id="floatingInput" name="password" placeholder="Inserisci la Password">
-      <label class= "input" for="floatingInput">Password</label>
-      </div>
-      <div class="form-floating">
-      <input type="password" class="form-control" id="floatingInput" name="confirm_password" placeholder="Ripeti la Password">
-      <label class= "input" for="floatingInput">Ripeti la Password</label>
-      </div>
-      <div class="checkbox mb-3">
-        <p>Possiedi giá un account? <a href="login.php">Esegui il login</a>.</p>
-      </div>
-              <input class="w-100 btn btn-lg btn-primary" type="submit" name="submit" value="Invia">
-    </form>
-      </main>
+    <header>
+      <h3 class="float-md-start mb-0">Registrati</h3>
+      <?php include_once "navbar.php";?>
+    </header>
+    <main class="form-signin">
+      <form method="post" action="script/register-script.php">
+        <h1 class="h3 mb-3 fw-normal">Esegui la registrazione</h1>
+        <div class="form-floating">
+          <input type="text" class="form-control" id="floatingInput" name="username" placeholder="Inserisci lo username">
+          <label class= "input" for="floatingInput">Username</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control secondo" id="floatingInput" name="password" placeholder="Inserisci la Password">
+          <label class= "input" for="floatingInput">Password</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingInput" name="confirm_password" placeholder="Ripeti la Password">
+          <label class= "input" for="floatingInput">Ripeti la Password</label>
+        </div>
+        <div class="checkbox mb-3">
+          <p>Possiedi giá un account? <a href="login.php">Esegui il login</a>.</p>
+        </div>
+        <input class="w-100 btn btn-lg btn-primary" type="submit" name="submit" value="Invia">
+      </form>
+    </main>
     <?php
     if (isset($_GET["error"])){
       switch ($_GET["error"]) {
@@ -67,7 +67,7 @@ if(isset($_SESSION["userID"])){
       }
     }
     ?>
-  <?php include_once "footer.php"; ?>
+    <?php include_once "footer.php"; ?>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
