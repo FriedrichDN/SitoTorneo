@@ -2,42 +2,29 @@
 session_start();
 
 if(!isset($_SESSION["userID"])){
-  header("location: /../login.php");
+  header("location: ../login.php");
   exit;
 }
+include '../script/functions.php';
 ?>
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <title>Torneo Pescara Cinema e Cazzi Vari</title>
-  <meta name="author"  content="Federico De Nuccio">
-  <meta name="description"  content="sito torneo del gruppo Pescara cinema e cazzi vari">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- collegamento ai css -->
-  <link rel="stylesheet" type="text/css" href="../css/partite_privato.css">
-  <link rel="stylesheet" type="text/css" href="../css/partite_mobile.css">
-  <link rel="stylesheet" type="text/css" href="../css/style.css">
-  <link rel="stylesheet" type="text/css" href="../css/mobile.css">
-  <link rel="stylesheet" href="../css/partite_privato.css?ts=<?=time()?>&quot">
-  <link rel="stylesheet" href="../css/partite_mobile.css?ts=<?=time()?>&quot">
-  <link rel="stylesheet" href="../css/style.css?ts=<?=time()?>&quot">
-  <link rel="stylesheet" href="../css/mobile.css?ts=<?=time()?>&quot">
+  <?php include_once "../meta.php" ?>
+  <link rel="stylesheet" type="text/css" href="../css/partite.css?<?php echo time(); ?>" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css?<?php echo time(); ?>" />
 </head>
-<body>
-  <header>
-    <div id="Titolo">
-      <h1>Torneo Pescara Cinema e Cazzi Vari</h1>
-      <h2 id="Partite">Lista Partite</h2>
-    </div>
-    <div id= "Logo">
-      <a href="index.php"> <img src="../immagini/img.png" width="100" height="97" alt="Logo"> </a>
+<body class="d-flex h-100 text-center text-white bg-dark">
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="mb-auto">
+    <div>
+      <h3 class="float-md-start mb-0">Lista Partite</h3>
+        <?php include_once "../navbar.php";?>
     </div>
   </header>
-  <?php include_once "../navbar.php";?>
-  <div id="content">
+  <main class="px-3">
+  <div class="row justify-content-center">
     <?php
-    include '../script/functions.php';
     punteggio();
     $sql = "SELECT fase FROM torneo";
     $result= sqlquery($sql);
@@ -46,9 +33,10 @@ if(!isset($_SESSION["userID"])){
     $matches= matchfinder($matchtype);
     $num=0; //numero match
     ?>
-    <table>
+    <table class="table table-responsive">
       <form method="post" action="../script/json.php">
         <?php
+        echo "<tr><th scope=\"col\" >Casa</th><th scope=\"col\">Ospiti</th><th scope=\"col\">Risultato</th></tr>";
         $filename= "risultati/".$_SESSION["username"]. ".json";
         if (!file_exists($filename)){
           foreach ($matches->matches as $match) {
@@ -60,7 +48,6 @@ if(!isset($_SESSION["userID"])){
             ?>
             <tr>
               <td><?php echo $match->homeTeam->name; ?></td>
-              <td>vs</td>
               <td><?php echo $match->awayTeam->name; ?></td>
               <?php
               $fullTime=$match->score->fullTime;
@@ -98,7 +85,7 @@ if(!isset($_SESSION["userID"])){
           <?php } ?>
           <?php
           if ($status==0){
-            echo "<input type=\"submit\" name=\"submit\">";
+            echo "<input class=\"w-100 btn btn-lg btn-primary\" type=\"submit\" name=\"submit\" value=\"Invia\">";
           }
           ?>
         <?php }
@@ -106,18 +93,41 @@ if(!isset($_SESSION["userID"])){
           foreach ($matches->matches as $match) {?>
             <tr>
               <td><?php echo $match->homeTeam->name; ?></td>
-              <td>vs</td>
               <td><?php echo $match->awayTeam->name; ?></td>
-              <td><?php echo $match->score->fullTime->homeTeam; ?></td>
-              <td>-</td>
-              <td><?php echo $match->score->fullTime->awayTeam; ?></td>
-            </tr>
-
+              <?php
+              $fullTime=$match->score->fullTime;
+              switch ($match->status) {
+                case 'FINISHED':
+                echo "<td>$fullTime->homeTeam</td>";
+                echo "<td>-</td>";
+                echo "<td>$fullTime->awayTeam</td>";
+                break;
+                case 'CANCELED':
+                echo "<td>Partita Cancellata</td>";
+                break;
+                case 'POSTPONED':
+                echo "<td>Partita Rimandata</td>";
+                break;
+                case 'SUSPENDED':
+                echo "<td>Partita Sospesa</td>";
+                break;
+                case 'IN_PLAY':
+                echo "<td>Partita in corso</td>";
+                break;
+                case 'PAUSED':
+                echo "<td>Partita in corso - INTERVALLO</td>";
+                break;
+                default:
+                break;
+              }
+              ?>
           <?php }} ?>
-
         </form>
       </table>
     </div>
-    <?php include_once "../footer.php";?>
+    </main>
+        <?php include_once "../footer.php";?>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>
   </html>

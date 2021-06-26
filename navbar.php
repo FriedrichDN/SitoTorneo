@@ -1,29 +1,26 @@
-<nav>
+<nav class="nav nav-masthead justify-content-center float-md-end">
 
-  <ul id="menu">
     <?php
     if (!isset($_SESSION["userID"])){
 
-      echo "<li><a href=\"classifica.php\">Classifica</a></li>";
+      echo "<a class=\"nav-link\" href=\"classifica.php\">Classifica</a>";
 
-      echo "<li><a href=\"partite.php\">Partite</a></li>";
+      echo "<a class=\"nav-link\" href=\"partite.php\">Partite</a>";
 
-      echo "<li><a href=\"login.php\">Login</a></li>";
+      echo "<a class=\"nav-link\" href=\"login.php\">Login</a>";
 
-      echo "<li><a href=\"register.php\">Registrati</a></li>";
+      echo "<a class=\"nav-link\" href=\"register.php\">Registrati</a>";
 
-      echo "</ul>";
 
     }
     else {
 
-      echo "<li><a href=\"classifica.php\">Classifica</a></li>";
+      echo "<a class=\"nav-link\" href=\"classifica.php\">Classifica</a>";
 
-      echo "<li><a href=\"partite.php\">Partite</a></li>";
+      echo "<a class=\"nav-link\" href=\"partite.php\">Partite</a>";
 
-      echo "<li><a href=\"../script/logout-script.php\">Esci</a></li>";
+      echo "<a class=\"nav-link\" href=\"../script/logout-script.php\">Esci</a>";
 
-      echo "</ul>";
     }
     ?>
   </nav>

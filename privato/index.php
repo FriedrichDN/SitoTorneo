@@ -1,33 +1,38 @@
 <?php
+// Initialize the session
 session_start();
 
+// Check if the user is already logged in, if yes then redirect him to welcome page
 if(!isset($_SESSION["userID"])){
-  header("location: ../login.php");
+  header("location: ../index.php");
   exit;
 }
 ?>
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" class="h-100">
 <head>
-  <title>Torneo Pescara Cinema e Cazzi Vari</title>
-  <meta name="author"  content="Federico De Nuccio">
-  <meta name="description"  content="sito torneo del gruppo Pescara cinema e cazzi vari">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- collegamento ai css -->
-  <link rel="stylesheet" type="text/css" href="../css/style.css">
-  <link rel="stylesheet" type="text/css" href="../css/mobile.css">
+  <?php include "../meta.php"; ?>
   <link rel="stylesheet" href="../css/style.css?ts=<?=time()?>&quot">
-  <link rel="stylesheet" href="../css/mobile.css?ts=<?=time()?>&quot">
 </head>
-<body>
-  <header>
-    <div>
-      <h1 id="Titolo">Torneo Pescara Cinema e Cazzi Vari</h1>
-    </div>
-    <div id= "Logo">
-      <a href="#"><img src="../immagini/img.png" width="100" height="97" alt="Logo"></a>
-    </div>
-  </header>
-  <?php include_once "../navbar.php";?>
-  <?php include_once "../footer.php";?>
+</head>
+<body class="d-flex h-100 text-center text-white bg-dark">
+
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="mb-auto">
+      <div>
+        <h3 class="float-md-start mb-0">Home Page</h3>
+        <?php include_once "../navbar.php";?>
+      </div>
+    </header>
+
+    <main class="px-3">
+      <h1>Torneo Pescara Cinema e Cazzi Vari</h1>
+      <p class="lead">Che la fortuna sia con te Giocatore</p>
+    </main>
+    <?php include_once "../footer.php";?>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>

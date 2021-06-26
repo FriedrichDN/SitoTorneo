@@ -11,38 +11,37 @@ if(isset($_SESSION["userID"])){
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <title>Torneo Pescara Cinema e Cazzi Vari</title>
-  <meta name="author"  content="Federico De Nuccio">
-  <meta name="description"  content="sito torneo del gruppo Pescara cinema e cazzi vari">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- collegamento ai css -->
-  <link rel="stylesheet" type="text/css" href="css/login.css">
-  <link rel="stylesheet" type="text/css" href="css/login_mobile.css">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  <link rel="stylesheet" type="text/css" href="css/mobile.css">
+  <?php include_once "meta.php" ?>
   <link rel="stylesheet" href="css/login.css?ts=<?=time()?>&quot">
-  <link rel="stylesheet" href="css/login_mobile.css?ts=<?=time()?>&quot">
-  <link rel="stylesheet" href="css/style.css?ts=<?=time()?>&quot">
-  <link rel="stylesheet" href="css/mobile.css?ts=<?=time()?>&quot">
-
 </head>
-<body>
+<body class="d-flex h-100 text-center text-white bg-dark">
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   <header>
-    <div id="Titolo">
-      <h1>Torneo Pescara Cinema e Cazzi Vari</h1>
-    </div>
-    <div id= "Logo">
-      <a href="index.php"><img src="immagini/img.png" width="100" height="97" alt="Logo"></a>
+    <div>
+      <h3 class="float-md-start mb-0">Accedi</h3>
+      <?php include_once "navbar.php";?>
     </div>
   </header>
-  <div id="content">
+  <main class="form-signin">
     <form method="post" action="script/login-script.php">
-      <input type="text" name="username" placeholder="Inserisci lo username">
-      <input type="password" name="password" placeholder="Inserisci la Password">
-      <input type="submit" name="submit" value="Invia">
-      <p>Non hai un account? <a href="register.php">Registrati</a>.</p>
+      <h1 class="h3 mb-3 fw-normal">Esegui il log in</h1>
+      <div class="form-floating">
+      <input type="text" class="form-control" id="floatingInput" name="username" placeholder="Inserisci lo username">
+      <label class= "input" for="floatingInput">Username</label>
+      </div>
+      <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Inserisci la Password">
+      <label class= "input" for="floatingPassword">Password</label>
+      </div>
+
+      <div class="checkbox mb-3">
+        <label>
+            <p>Non hai un account? <a href="register.php">Registrati</a>.</p>
+        </label>
+      </div>
+            <input class="w-100 btn btn-lg btn-primary" type="submit" name="submit" value="Invia">
     </form>
+  </main>
     <?php
     if (isset($_GET["error"])){
       switch ($_GET["error"]) {
@@ -60,7 +59,8 @@ if(isset($_SESSION["userID"])){
       }
     }
     ?>
+    <?php include_once "footer.php";?>
   </div>
-  <?php include_once "footer.php";?>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
