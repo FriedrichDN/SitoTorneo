@@ -53,9 +53,7 @@ include '../script/functions.php';
                   $fullTime=$match->score->fullTime;
                   switch ($match->status) {
                     case 'FINISHED':
-                    echo "<td>$fullTime->homeTeam</td>";
-                    echo "<td>-</td>";
-                    echo "<td>$fullTime->awayTeam</td>";
+                    echo "<td>$fullTime->homeTeam - $fullTime->awayTeam</td>";
                     break;
                     case 'CANCELED':
                     echo "<td>Partita Cancellata</td>";
@@ -98,9 +96,7 @@ include '../script/functions.php';
                   $fullTime=$match->score->fullTime;
                   switch ($match->status) {
                     case 'FINISHED':
-                    echo "<td>$fullTime->homeTeam</td>";
-                    echo "<td>-</td>";
-                    echo "<td>$fullTime->awayTeam</td>";
+                    echo "<td>$fullTime->homeTeam - $fullTime->awayTeam</td>";
                     break;
                     case 'CANCELED':
                     echo "<td>Partita Cancellata</td>";
