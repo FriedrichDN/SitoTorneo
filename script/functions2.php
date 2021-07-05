@@ -153,7 +153,7 @@ function punteggio (){
       }
     }
     if ($status==1){
-      $it = new FilesystemIterator('../privato/risultati/');
+      $it = new FilesystemIterator('privato/risultati/');
       $filename = array();
       $files = array();
       foreach ($it as $fileinfo) {
@@ -167,7 +167,7 @@ function punteggio (){
         $i=0;
         foreach($matches->matches as $match){
           $risultato = $match->score->fullTime->homeTeam ."-".$match->score->fullTime->awayTeam;
-          $json= file_get_contents("../privato/risultati/".$filesname);
+          $json= file_get_contents("privato/risultati/".$filesname);
           $decode = json_decode($json,true);
           $risinserito = $decode[$i];
           if ($risinserito[0]!= "?"){
@@ -229,7 +229,7 @@ function punteggio (){
         }
         foreach($matches->matches as $match){
           $risultato = $match->score->fullTime->homeTeam ."-".$match->score->fullTime->awayTeam;
-          $json= file_get_contents("../privato/risultati/".$filesname);
+          $json= file_get_contents("privato/risultati/".$filesname);
           $decode = json_decode($json,true);
           $risinserito = $decode[$i];
           if ($risinserito[0]!= "?"){
@@ -267,7 +267,7 @@ function punteggio (){
         $result = sqlquery($sql);
         $y++;
       }
-      $files = glob('../privato/risultati/*');
+      $files = glob('privato/risultati/*');
       foreach($files as $file){
         if(is_file($file)){
           unlink($file);
