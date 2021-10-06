@@ -118,8 +118,8 @@ function sqlquery($sql){
   return $result;
 }
 function matchfinder($matchtype) {
-  if (!is_string($matchtype)){
-    $uri = 'http://api.football-data.org/v2/competitions/EC/matches/?matchday='.$matchtype;
+  if ($matchype<=6 && $matchtype>=1){
+    $uri = 'http://api.football-data.org/v2/competitions/CL/matches?stage=GROUP_STAGE&&matchday='.$matchtype;
     $reqPrefs['http']['method'] = 'GET';
     $reqPrefs['http']['header'] = 'X-Auth-Token: 44623b1a626048ed8afd8e884d394e53';
     $stream_context = stream_context_create($reqPrefs);
@@ -127,7 +127,7 @@ function matchfinder($matchtype) {
     $matches = json_decode($response);
   }
   else {
-    $uri = 'http://api.football-data.org/v2/competitions/EC/matches/?stage='.$matchtype;
+    $uri = 'http://api.football-data.org/v2/competitions/CL/matches?stage='.$matchtype;
     $reqPrefs['http']['method'] = 'GET';
     $reqPrefs['http']['header'] = 'X-Auth-Token: 44623b1a626048ed8afd8e884d394e53';
     $stream_context = stream_context_create($reqPrefs);
@@ -190,26 +190,26 @@ function punteggio (){
           $i++;
         }
       }
-      if ($matchtype >= 1 && $matchtype < 3){
+      if ($matchtype >= 1 && $matchtype < 6){
         $matchtype++;
         $matchtype = "$matchtype";
         $punteggio1 = 20;
-        $punteggio2 = 40;
+        $punteggio2 = 20;
       }
-      elseif ($matchtype===3) {
+      elseif ($matchtype===6) {
         $matchtype="LAST_16";
         $punteggio1 = 30;
-        $punteggio2 = 60;
+        $punteggio2 = 30;
       }
       elseif ($matchtype==="LAST_16") {
         $matchtype="QUARTER_FINAL";
         $punteggio1 = 45;
-        $punteggio2 = 90;
+        $punteggio2 = 45;
       }
       elseif ($matchtype==="QUARTER_FINAL") {
         $matchtype="SEMI_FINAL";
         $punteggio1 = 70;
-        $punteggio2 = 140;
+        $punteggio2 = 70;
       }
       elseif ($matchtype==="SEMI_FINAL") {
         $matchtype="FINAL";
@@ -283,8 +283,8 @@ function matchtype(){
   $matchtype = $ris["fase"];
   $status=1;
   while ($status != 0) {
-    if (!is_string($matchtype)){
-      $uri = 'http://api.football-data.org/v2/competitions/EC/matches/?matchday='.$matchtype;
+    if ($matchype<=6 && $matchtype>=1){
+      $uri = 'http://api.football-data.org/v2/competitions/CL/matches?stage=GROUP_STAGE&&matchday='.$matchtype;
       $reqPrefs['http']['method'] = 'GET';
       $reqPrefs['http']['header'] = 'X-Auth-Token: 44623b1a626048ed8afd8e884d394e53';
       $stream_context = stream_context_create($reqPrefs);
@@ -292,7 +292,7 @@ function matchtype(){
       $matches = json_decode($response);
     }
     else {
-      $uri = 'http://api.football-data.org/v2/competitions/EC/matches/?stage='.$matchtype;
+      $uri = 'http://api.football-data.org/v2/competitions/CL/matches?stage='.$matchtype;
       $reqPrefs['http']['method'] = 'GET';
       $reqPrefs['http']['header'] = 'X-Auth-Token: 44623b1a626048ed8afd8e884d394e53';
       $stream_context = stream_context_create($reqPrefs);
@@ -305,10 +305,10 @@ function matchtype(){
       }
     }
     if ($status==1) {
-      if ($matchtype >= 1 && $matchtype < 3){
+      if ($matchtype >= 1 && $matchtype < 6){
         $matchtype++;
       }
-      elseif ($matchtype===3) {
+      elseif ($matchtype===6) {
         $matchtype="LAST_16";
       }
       elseif ($matchtype==="LAST_16") {

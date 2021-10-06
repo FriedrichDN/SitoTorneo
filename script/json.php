@@ -7,8 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$result= sqlquery($sql);
 		$ris = $result->fetch_assoc();
 		$matchtype = $ris["fase"];
-		if (!is_string($matchtype)) {
-			$uri = 'http://api.football-data.org/v2/competitions/EC/matches/?matchday='.$matchtype;
+		if ($matchype<=6 && $matchtype>=1) {
+			$uri = 'http://api.football-data.org/v2/competitions/CL/matches?stage=GROUP_STAGE&&matchday='.$matchtype;
 			$reqPrefs['http']['method'] = 'GET';
 			$reqPrefs['http']['header'] = 'X-Auth-Token: 44623b1a626048ed8afd8e884d394e53';
 			$stream_context = stream_context_create($reqPrefs);
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$matches = json_decode($response);
 		}
 		else{
-			$uri = 'http://api.football-data.org/v2/competitions/EC/matches/?stage='.$matchtype;
+			$uri = 'http://api.football-data.org/v2/competitions/CL/matches?stage='.$matchtype;
 			$reqPrefs['http']['method'] = 'GET';
 			$reqPrefs['http']['header'] = 'X-Auth-Token: 44623b1a626048ed8afd8e884d394e53';
 			$stream_context = stream_context_create($reqPrefs);
@@ -45,5 +45,6 @@ if(file_put_contents("$file_name", get_data())) {
 	header("location: /privato/index.php");
 }
 else {
+	var_dump($file_name);
 	echo 'Errore, contattare Federico';
 }

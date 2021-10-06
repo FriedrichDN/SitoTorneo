@@ -1,4 +1,5 @@
 <?php
+include '../script/functions.php';
 // Initialize the session
 session_start();
 
@@ -6,6 +7,12 @@ session_start();
 if(!isset($_SESSION["userID"])){
   header("location: ../index.php");
   exit;
+}
+$sql = "SELECT stato FROM data";
+$result= sqlquery($sql);
+$stato = $result->fetch_assoc();
+if ($stato==0){
+  checkdate();
 }
 ?>
 <!DOCTYPE html>
