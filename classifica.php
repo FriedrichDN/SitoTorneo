@@ -7,7 +7,7 @@ if(isset($_SESSION["userID"])){
   header("location: /privato/index.php");
   exit;
 }
-include 'script/functions2.php';
+include 'script/functions.php';
 ?>
 <!DOCTYPE html>
 <html lang="it" class="h-100">

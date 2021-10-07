@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$DBUsername = "root";
-$DBPassword = "St&ll!n@37";
-$DBName = "my_torneo";
+$DBUsername = "torneoprova";
+$DBPassword = "";
+$DBName = "my_torneoprova";
 
 $connection = mysqli_connect($servername,$DBUsername,$DBPassword,$DBName);
 

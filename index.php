@@ -1,5 +1,5 @@
 <?php
-include 'script/functions.php';
+include "script/functions.php";
 // Initialize the session
 session_start();
 // Check if the user is already logged in, if yes then redirect him to welcome page
@@ -7,12 +7,14 @@ if(isset($_SESSION["userID"])){
   header("location: /privato/index.php");
   exit;
 }
-$sql = "SELECT stato FROM data";
+$sql = "SELECT stato FROM checkdate";
 $result= sqlquery($sql);
-$stato = $result->fetch_assoc();
+$ris = $result->fetch_assoc();
+$stato = $ris["stato"];
 if ($stato==0){
-  checkdate();
+  checkdates();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="it" class="h-100">

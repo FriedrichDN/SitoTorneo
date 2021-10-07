@@ -25,7 +25,6 @@ include '../script/functions.php';
     <main class="px-3">
       <div class="row justify-content-center">
         <?php
-        punteggio();
         $sql = "SELECT fase FROM torneo";
         $result= sqlquery($sql);
         $ris = $result->fetch_assoc();

@@ -7,7 +7,7 @@ if(isset($_SESSION["userID"])){
   header("location: /privato/index.php");
   exit;
 }
-include 'script/functions2.php';
+include 'script/functions.php';
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -26,7 +26,6 @@ include 'script/functions2.php';
     <main class="px-3">
       <div class="row justify-content-center">
         <?php
-        punteggio();
         $sql = "SELECT fase FROM torneo";
         $result= sqlquery($sql);
         $ris = $result->fetch_assoc();

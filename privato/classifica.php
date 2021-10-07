@@ -28,7 +28,6 @@ include '../script/functions.php';
     <main class="px-3">
       <div class="row justify-content-center">
         <?php
-        punteggio();
         $sql = "SELECT username,punti FROM users ORDER BY punti DESC";
         $result = sqlquery($sql);
         if ($result->num_rows > 0) {
