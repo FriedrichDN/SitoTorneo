@@ -7,12 +7,12 @@ if(!isset($_SESSION["userID"])){
   header("location: ../index.php");
   exit;
 }
-include '../script/functions.php';
+include $_SERVER['DOCUMENT_ROOT']."/script/functions.php";
 ?>
 <!DOCTYPE html>
 <html lang="it" class="h-100">
 <head>
-  <?php include_once "../meta.php" ?>
+  <?php include_once $_SERVER['DOCUMENT_ROOT']."/meta.php" ?>
   <link rel="stylesheet" type="text/css" href="../css/classifica.css?<?php echo time(); ?>" />
   <link rel="stylesheet" type="text/css" href="../css/style.css?<?php echo time(); ?>" />
 
@@ -22,7 +22,7 @@ include '../script/functions.php';
     <header class="mb-auto">
       <div>
         <h3 class="float-md-start mb-0">Classifica</h3>
-        <?php include_once "../navbar.php";?>
+        <?php include_once $_SERVER['DOCUMENT_ROOT']."/navbar.php";?>
       </div>
     </header>
     <main class="px-3">
@@ -41,7 +41,7 @@ include '../script/functions.php';
         ?>
       </div>
     </main>
-    <?php include_once "../footer.php";?>
+    <?php include_once $_SERVER['DOCUMENT_ROOT']."/footer.php";?>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 

@@ -11,7 +11,7 @@ if(isset($_SESSION["userID"])){
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <?php include_once "meta.php" ?>
+  <?php include_once $_SERVER['DOCUMENT_ROOT']."/meta.php" ?>
   <link rel="stylesheet" href="css/login.css?ts=<?=time()?>&quot">
 </head>
 <body class="d-flex h-100 text-center text-white bg-dark">
@@ -19,7 +19,7 @@ if(isset($_SESSION["userID"])){
     <header>
       <div>
         <h3 class="float-md-start mb-0">Accedi</h3>
-        <?php include_once "navbar.php";?>
+        <?php include_once $_SERVER['DOCUMENT_ROOT']."/navbar.php";?>
       </div>
     </header>
     <main class="form-signin">
@@ -59,7 +59,7 @@ if(isset($_SESSION["userID"])){
       }
     }
     ?>
-    <?php include_once "footer.php";?>
+    <?php include_once $_SERVER['DOCUMENT_ROOT']."/footer.php";?>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>

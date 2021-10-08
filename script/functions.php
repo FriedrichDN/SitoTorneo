@@ -1,5 +1,4 @@
 <?php
-
 function emptyInputRegister($username,$password,$confirm_password) {
   $result;
   if (empty($username) || empty($password) || empty($confirm_password) ){
@@ -112,7 +111,7 @@ function loginUser($connection,$username,$password){
   }
 }
 function sqlquery($sql){
-  include "config.php";
+  include $_SERVER['DOCUMENT_ROOT']."/script/config.php";
   $result= $connection->query($sql);
   $connection -> close();
   return $result;
@@ -201,7 +200,7 @@ function punteggio (){
           $i++;
         }
 
-        $sql = "UPDATE users SET PartiteIndovinate = '$PartiteIndovinate' WHERE username= '$name'"
+        $sql = "UPDATE users SET PartiteIndovinate = '$PartiteIndovinate' WHERE username= '$name'";
         $result = sqlquery($sql);
         $sql = "UPDATE users SET RisultatiEsatti = '$RisultatiEsatti' WHERE username= '$name'";
         $result = sqlquery($sql);
@@ -293,6 +292,42 @@ function punteggio (){
       }
     }
   }
+  $cont=0;
+  $i=0;
+  $uri = 'http://api.football-data.org/v2/competitions/CL/matches?stage=GROUP_STAGE&&matchday='.$matchtype;
+  $reqPrefs['http']['method'] = 'GET';
+  $reqPrefs['http']['header'] = 'X-Auth-Token: 44623b1a626048ed8afd8e884d394e53';
+  $stream_context = stream_context_create($reqPrefs);
+  $response = file_get_contents($uri, false, $stream_context);
+  $matches = json_decode($response);
+  foreach($matches->matches as $match){
+    $cont++;
+  }
+    foreach($matches->matches as $match){
+      $i++;
+      if ($i==$cont){
+        $matchdate=$match->utcDate;
+      }
+    }
+    if ($matchdate[5]==0){
+
+      $lastmonth=$matchdate[6];
+
+    }
+    else{
+      $lastmonth=$matchdate[5].$matchdate[6];
+    }
+    if ($matchdate[8]==0){
+      $lastday=$matchdate[9];
+
+    }
+    else{
+      $lastday=$matchdate[8].(string)($matchdate[9]+1);
+    }
+
+
+  $crontab = "0 0 $lastday $lastmonth * /usr/bin/php /var/www/SitoTorneo/script/punteggio.php \n";
+  file_put_contents("/var/spool/cron/crontabs/root", $crontab);
 }
 function matchtype(){
   $sql = "SELECT fase FROM torneo";
@@ -345,6 +380,7 @@ function matchtype(){
 function checkdates(){
   $matchtype= matchtype();
   $cont=0;
+  $i=0;
   $status=1;
   $uri = 'http://api.football-data.org/v2/competitions/CL/matches?stage=GROUP_STAGE&&matchday='.$matchtype;
   $reqPrefs['http']['method'] = 'GET';
@@ -378,9 +414,8 @@ function checkdates(){
     }
 
 
-  $crontab = "0 0 $lastday $lastmonth * /usr/bin/php /var/www/SitoTorneo/script/punteggio.php";
-  file_put_contents("/var/www/SitoTorneo/script/crontab.txt", $crontab);
-  echo exec('crontab /var/www/SitoTorneo/script/crontab.txt');
+  $crontab = "0 0 $lastday $lastmonth * /usr/bin/php /var/www/SitoTorneo/script/punteggio.php \n";
+  file_put_contents("/var/spool/cron/crontabs/root", $crontab);
   $sql = "UPDATE checkdate SET stato=1";
   $result = sqlquery($sql);
   $sql = "UPDATE torneo SET fase=$matchtype";

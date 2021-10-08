@@ -5,8 +5,8 @@ if (isset($_POST["submit"])){
   $password = $_POST["password"];
   $confirm_password = $_POST["confirm_password"];
 
-  require_once "config.php";
-  require_once "functions.php";
+  require_once $_SERVER['DOCUMENT_ROOT']."/script/config.php";
+  require_once $_SERVER['DOCUMENT_ROOT']."/script/functions.php";
 
   if (emptyInputRegister($username,$password,$confirm_password) !== false){
     header ("location: ../register.php?error=emptyinput");

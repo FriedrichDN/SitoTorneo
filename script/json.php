@@ -2,7 +2,7 @@
 session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	function get_data() {
-		include "functions.php";
+		include $_SERVER['DOCUMENT_ROOT']."/script/functions.php";
 		$sql = "SELECT fase FROM torneo";
 		$result= sqlquery($sql);
 		$ris = $result->fetch_assoc();
