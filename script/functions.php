@@ -165,6 +165,15 @@ function punteggio (){
       $matchesatto = array_fill(0, $cont, 0);
       foreach($files as $filesname) {
         $i=0;
+        $name = basename($filesname,".json");
+        $sql = "SELECT PartiteIndovinate FROM users WHERE username= '$name'";
+        $result = sqlquery($sql);
+        $row = $result->fetch_assoc();
+        $PartiteIndovinate = $row["PartiteIndovinate"];
+        $sql = "SELECT RisultatiEsatti FROM users WHERE username= '$name'";
+        $result = sqlquery($sql);
+        $row = $result->fetch_assoc();
+        $RisultatiEsatti = $row["RisultatiEsatti"];
         foreach($matches->matches as $match){
           $risultato = $match->score->fullTime->homeTeam ."-".$match->score->fullTime->awayTeam;
           $json= file_get_contents("../privato/risultati/".$filesname);
@@ -182,13 +191,22 @@ function punteggio (){
             }
             if ($WINNER== $match->score->winner){
               $matchesatto[$i]++;
+              $PartiteIndovinate++;
             }
             if ($risultato == $risinserito ){
               $risesatto[$i]++;
+              $RisultatiEsatti++;
             }
           }
           $i++;
         }
+
+        $sql = "UPDATE users SET PartiteIndovinate = '$PartiteIndovinate' WHERE username= '$name'"
+        $result = sqlquery($sql);
+        $sql = "UPDATE users SET RisultatiEsatti = '$RisultatiEsatti' WHERE username= '$name'";
+        $result = sqlquery($sql);
+
+
       }
       if ($matchtype >= 1 && $matchtype < 6){
         $matchtype++;

@@ -28,13 +28,13 @@ include '../script/functions.php';
     <main class="px-3">
       <div class="row justify-content-center">
         <?php
-        $sql = "SELECT username,punti FROM users ORDER BY punti DESC";
+        $sql = "SELECT username,punti,RisultatiEsatti,PartiteIndovinate FROM users ORDER BY punti DESC, PartiteIndovinate DESC";
         $result = sqlquery($sql);
         if ($result->num_rows > 0) {
-          echo "<table class=\"table table-responsive\"><tr><th scope=\"col\" >Giocatori</th><th scope=\"col\">Punti</th></tr>";
+          echo "<table class=\"table table-responsive\"><tr><th scope=\"col\" >Giocatori</th><th scope=\"col\">Punti</th><th scope=\"col\">Risultati Esatti</th> <th scope=\"col\">Partite Indovinate</th></tr>";
           // output data of each row
           while($row = $result->fetch_assoc()) {
-            echo "<tr><td>" . $row["username"]. "</td><td>" . $row["punti"]. "</td></tr>";
+            echo "<tr><td>" . $row["username"]. "</td><td>" . $row["punti"]. "</td><td>" . $row["RisultatiEsatti"]. "</td><td>" . $row["PartiteIndovinate"]. "</td></tr>";
           }
           echo "</table>";
         }
